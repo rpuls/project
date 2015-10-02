@@ -1,29 +1,32 @@
 package moriamines;
 
 public class BuildMap {
-    Room room20 = new Room("a", new String[]{"weapon", "key", "potion"}, Enemy.getOrc());
+	Items items = new Items("", false, false, false, false, 0, 0);
+	Enemy enemy = new Enemy("", 0, 0);
+	
+    Room room20 = new Room("a", items.getKey(), enemy.getNull());
     Player playerObject1 = new Player(this.room20);
-    Room room1 = new Room("a", new String[]{"weapon", "key", "potion"}, Enemy.getOrc());
-    Room room2 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room3 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
+    Room room1 = new Room("a", items.getArmor(), enemy.getOrc());
+    Room room2 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room3 = new Room("a", items.getNull(), enemy.getOrc());
     RoomWithLock roomWithLock = new RoomWithLock();
-    Room room4 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room5 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room6 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room7 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room8 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room9 = new Room("a", new String[]{"weapon"}, Enemy.getOrc());
-    Room room10 = new Room("a", new String[]{"weapon", "key"}, Enemy.getOrc());
-    Room room11 = new Room("a", new String[]{"weapon", "key"}, Enemy.getOrc());
-    Room room12 = new Room("a", new String[]{"weapon", "key"}, Enemy.getOrc());
-    Room room13 = new Room("This room smells like rotten trash.... OHHHHH an", new String[]{"weapon", "key"}, Enemy.getOrc());
-    Room room14 = new Room("a", new String[]{"weapon", "key"}, Enemy.getOrc());
-    Room room15 = new Room("a", new String[]{"weapon", "key"}, Enemy.getOrc());
-    Room room16 = new Room("a", new String[]{}, Enemy.getOrc());
-    Room room17 = new Room("a", new String[]{"weapon", "key", "potion"}, Enemy.getOrc());
-    Room room18 = new Room("a", new String[]{"weapon", "key", "potion"}, Enemy.getOrc());
-    Room room19 = new Room("a", new String[]{"weapon", "key", "potion"}, Enemy.getOrc());
-    Room room21 = new Room("Ohhh! Shit! What is this beast??? ... \ncreature: I'M THE TREASURE GUARD.", new String[]{"treasure chest"}, Enemy.getBoss());
+    Room room4 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room5 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room6 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room7 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room8 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room9 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room10 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room11 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room12 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room13 = new Room("This room smells like rotten trash.... OHHHHH an", items.getKey(), enemy.getOrc());
+    Room room14 = new Room("a", items.getKey(), enemy.getNull());
+    Room room15 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room16 = new Room("a", items.getNull(), enemy.getOrc());
+    Room room17 = new Room("a",items.getNull(), enemy.getNull());
+    Room room18 = new Room("a",items.getSword(), enemy.getMutantRat());
+    Room room19 = new Room("a", items.getKey(), enemy.getMutantRat());
+    Room room21 = new Room("Ohhh! Shit! What is this beast??? ... \ncreature: I'M THE TREASURE GUARD.", items.getChest(), enemy.getBoss());
     
     public BuildMap() {
         //room 1
@@ -80,7 +83,7 @@ public class BuildMap {
         //room 16
         room16.setExitSouth(room20);
         room16.setExitEast(room17);
-        room16.setExitWest(room16);
+        room16.setExitWest(room15);
         //room 17
         room17.setExitNorth(room12);
         room17.setExitEast(room18);
@@ -91,8 +94,6 @@ public class BuildMap {
         room19.setExitNorth(room14);
         //room 20
         room20.setExitNorth(room16);
-
-        test();
     }
 
     public Room[] putRooms() {
@@ -120,30 +121,4 @@ public class BuildMap {
         arrayRooms[19] = room20;
         return arrayRooms;
     }
-
-    public void test() {
-        Room currentRoom = room20;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room16;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room15;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room14;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room19;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room14;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room9;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room10;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room11;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room12;
-        System.out.println(currentRoom.getFullDescription());
-        currentRoom = room13;
-        System.out.println(currentRoom.getFullDescription());
-    }
-
 }

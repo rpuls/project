@@ -6,17 +6,19 @@ public class Player {
 
     Player(Room start) {
         position = start;
-        inventory = new ArrayList<>();
-        inventory.add("tool");
-        e = position.getEnemyInThisRoom();
+        inventory = new ArrayList<Items>();
+        e = position.getEnemyInThisRoom(); //mangler is dead check
+        i = position.getItemsInThisRoom();
     }
 
-    private int hitPoints = 500;
-    private int damage = 10;
-    private ArrayList<String> inventory;
-    private Room position;
+    private int level = 1;
+    private int hitPoints = 30;
+    private int damage = 2;
+    private ArrayList<Items> inventory;
+    public Room position;
     private Room lastRoom;
     private Enemy e;
+    private Items i;
 
     /**
      * itemsToArray Denne metode lÃ¸ber et stringArray igennem med et for loop,
@@ -24,6 +26,8 @@ public class Player {
      *
      * @return
      */
+    
+    
     private ArrayList<String> itemsToArray() {
         ArrayList<String> itemsToPick = new ArrayList<>();
         for (int i = 0; i < position.getItems().size(); i++) {
@@ -33,22 +37,26 @@ public class Player {
 
     }
 
-    public String getInventory() {
-        return "you are currently carring; " + inventory.toString();
+    public String getInventory() {//converteringsfejl
+    	String totalInv="";
+    	for (int i = 0; i < inventory.size(); i++) {
+    		totalInv+=(inventory.get(i).getName()+" ");
+		}
+        return "you are currently carring; " + totalInv;
     }
 
     public String pickUp() {
-        ArrayList<String> newItems = itemsToArray();
         if (e != null) {
             return "The Enemy is guarding the items! try \"attack\"";
         }
-        if (newItems != null) {
-            inventory.addAll(newItems);
-            return "You picked up the following: " + newItems.toString();
+        if (i != null) {
+            inventory.add(i);
+            return "You picked up the following: " + i.getName();
         } else {
             return "Nothing to pickup";
         }
     }
+    
 
     public void beAttacked(int hit) {
         hitPoints -= hit;
@@ -64,7 +72,7 @@ public class Player {
                 MoriaMines.gameOver = true;
                 return "GAME OVER YOU DIED!";
             } else {
-                return r;
+                return r + ".\nyou took some damage. Your current HP is now: " + hitPoints;
             }
         } else {
             return "no enemy!";
@@ -74,6 +82,8 @@ public class Player {
     void enterRoom(Room newRoom) {
         lastRoom = position;
         position = newRoom;
+        e = position.getEnemyInThisRoom();
+        i = position.getItemsInThisRoom();
         //return position.enterRoom();
     }
 
@@ -86,7 +96,7 @@ public class Player {
             return "You need to kill the blocking enemy to move on!";
         }
         enterRoom(newRoom);
-        return newRoom.getFullDescription();
+        return newRoom.getFullDescription(newRoom.getItemsInThisRoom(),newRoom.getEnemyInThisRoom() );
     }
 
     String goSouth() {
@@ -98,7 +108,7 @@ public class Player {
             return "You need to kill the blocking enemy to move on!";
         }
         enterRoom(newRoom);
-        return newRoom.getFullDescription();
+        return newRoom.getFullDescription(newRoom.getItemsInThisRoom(),newRoom.getEnemyInThisRoom());
     }
 
     String goEast() {
@@ -110,7 +120,7 @@ public class Player {
             return "You need to kill the blocking enemy to move on!";
         }
         enterRoom(newRoom);
-        return newRoom.getFullDescription();
+        return newRoom.getFullDescription(newRoom.getItemsInThisRoom(),newRoom.getEnemyInThisRoom());
     }
 
     String goWest() {
@@ -122,12 +132,17 @@ public class Player {
             return "You need to kill the blocking enemy to move on!";
         }
         enterRoom(newRoom);
-        return newRoom.getFullDescription();
+        return newRoom.getFullDescription(newRoom.getItemsInThisRoom(),newRoom.getEnemyInThisRoom());
     }
 
     public String help() {
         return "helpÂ â€? prints this message\n"
                 + "east, west, north, south, back, inventory, pick itemsÂ â€? attempt to move player to new room";
     }
+
+	public void removeMe() {
+		e=null;
+		
+	}
 
 }

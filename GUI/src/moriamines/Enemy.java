@@ -2,11 +2,12 @@ package moriamines;
 
 public class Enemy {
 
-    private static String name = "";
+    private String name = "";
     private int hitPoints = 0;
     private int damage = 0;
     
-    public static String getName() {
+	
+    public String getName() {
         return name;
     }
 
@@ -15,22 +16,23 @@ public class Enemy {
         hitPoints = hp;
         damage = dmg;
     }
-    public static Enemy getNull(){
+    
+    public Enemy getNull(){
         return (Enemy)null;
     }
-    public static Enemy getOrc() {
-        return new Enemy("Orc", 50, 20);
+    public Enemy getOrc() {
+        return new Enemy("Orc", 10, 1);
     }
 
-    public static Enemy getMutantRat() {
-        return new Enemy("Mutant Rat", 10, 35);
+    public Enemy getMutantRat() {
+        return new Enemy("Mutant Rat", 25, 5);
     }
 
-    public static Enemy getGhost() {
-        return new Enemy("Ghost", 100, 5);
+    public Enemy getGhost() {
+        return new Enemy("Ghost", 50, 6);
     }
 
-    public static Enemy getBoss() {
+    public Enemy getBoss() {
         return new Enemy("Boss Deamon", 200, 25);
     }
     
@@ -42,10 +44,11 @@ public class Enemy {
         hitPoints -= hit;
         if(hitPoints<=0){
             hitPoints = 0;
+            p.removeMe();
             return "The " + name + " just got KILLED!"; //false hvis den er død.
         }else{
             p.beAttacked(damage);
-            return "Remaning hitpoints: " + hitPoints;
+            return "Enemy's remaning hitpoints: " + hitPoints;
         }
     }  
 

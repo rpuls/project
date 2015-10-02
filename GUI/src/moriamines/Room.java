@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Room {
 
-    public Room(String roomInfo, String[] roomItems, Enemy e) { //room constructor med 3 id's string roominfo, og arraylist roomitems
+    public Room(String roomInfo, Items i, Enemy e) { //room constructor med 3 id's string roominfo, og arraylist roomitems
         this.description = roomInfo;
-        putItems(roomItems);
         this.enemyInThisRoom = e;
+        this.itemsInThisRoom = i;
 
     }
 
@@ -15,6 +15,7 @@ public class Room {
     protected String description = "";
     protected ArrayList<String> items = new ArrayList<>();
     protected Enemy enemyInThisRoom;
+    protected Items itemsInThisRoom;
     //public String[] roomItems; not used
     
     
@@ -26,13 +27,8 @@ public class Room {
     public Enemy getEnemyInThisRoom() {
         return enemyInThisRoom;
     }
-
-    private void putItems(String[] roomItems) { //smider items  i arraylisten "items"
-        for (int i = 0; i < roomItems.length; i++) {
-            if (roomItems.length != 0) {
-                items.add(roomItems[i]);
-            }
-        }
+    public Items getItemsInThisRoom(){
+    	return itemsInThisRoom;
     }
 
     public void setDescription(String description) {
@@ -44,16 +40,15 @@ public class Room {
      * hvis item liste identifieren !ikke er tom
      * @return 
      */
-    public String getFullDescription() {  
-        if (items.isEmpty()) {
-            return "There seems to be no items in here! " + description + " " + Enemy.getName();
+    public String getFullDescription(Items item, Enemy enemy) {  
+        if ((item == null) && (enemy == null)) {
+            return "There seems to be no items in here! " + description + " The room is clear! no enemies!";
         }
-        if (!(items.isEmpty())) {
-            String itemsInThisRoom = "";
-            for (int i = 0; i < items.size(); i++) {
-                itemsInThisRoom = itemsInThisRoom + " " + items.get(i);
-            }
-            return "I see following items on the ground in this room:" + itemsInThisRoom + ".\n" + description + " " + Enemy.getName();
+        if (item != null && (enemy == null)) {
+            return "I see a " + item.getName() + " on the ground.\n" + description + " but there is no enemies here!";
+        }
+        if((item == null) && (enemy != null)){
+        	return "I see no items on the ground.\n" + description + " but here seems to be a(n) " + enemy.getName();
         }
         return "";
     }

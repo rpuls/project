@@ -2,31 +2,29 @@ package moriamines;
 
 public class BuildMap {
 	Items items = new Items("", false, false, false, false, 0, 0);
-	Enemy enemy = new Enemy("", 0, 0);
-	
-    Room room20 = new Room("a", items.getKey(), enemy.getNull());
+//HARDCODED MAP	
+    Room room20 = new Room("Entrance room", items.getNull(), Enemy.getNull(), 0);
+    Room room1 = new Room("The walls looks sticky and wet", items.getArmor(), Enemy.getGhost(), 138);
+    Room room2 = new Room("I can hear the wind through an open window\nBut wait... There is no windows in this room", items.getPotion(), Enemy.getGhost(), 0);
+    Room room3 = new RoomWithLock(items.getNull(), Enemy.getNull(), 0);
+    Room room4 = new Room("Thanks god, there is a torch in this room", items.getPotion(), Enemy.getGhost(), 77);
+    Room room5 = new Room("The floor is vibrating in this room", items.getNull(), Enemy.getMutantRat(), 0);
+    Room room6 = new Room("There is a box on the floor", items.getPotion(), Enemy.getNull(), 1);
+    Room room7 = new Room("There is blood on the floor", items.getNull(), Enemy.getGhost(), 0);
+    Room room8 = new Room("The room is full of torture machines", items.getSword(), Enemy.getGhost(), 113);
+    Room room9 = new Room("The room has nice decor", items.getNull(), Enemy.getMutantRat(), 0);
+    Room room10 = new Room("Empty and big room", items.getNull(), Enemy.getOrc(), 0);
+    Room room11 = new Room("This is no ordinary room, more like a hallway", items.getPotion(), Enemy.getMutantRat(), 42);
+    Room room12 = new Room("The room is nice and clean", items.getNull(), Enemy.getOrc(), 0);
+    Room room13 = new Room("This room smells like rotten trash.... OHHHHH an", items.getPotion(), Enemy.getMutantRat(), 21);
+    Room room14 = new Room("This room look familiar, have i been here before?", items.getPotion(), Enemy.getOrc(), 0);
+    Room room15 = new Room("Bricks has fallen from the roof in this room", items.getNull(), Enemy.getOrc(), 0);
+    Room room16 = new Room("The only light in this room is from the entrance door", items.getNull(), Enemy.getOrc(), 0);
+    Room room17 = new Room("The room is tiny and dark", items.getNull(), Enemy.getMutantRat(), 0);
+    Room room18 = new Room("Something smells rotten in here.", items.getSword(), Enemy.getMutantRat(), 0);
+    Room room19 = new Room("The room is very cold, and very large", items.getKey(), Enemy.getMutantRat(), 33);
+    Room room21 = new Room("Ohhh! Shit! What is this beast??? ... \ncreature: I'M THE TREASURE GUARD.", items.getChest(), Enemy.getBoss(), 0);
     Player playerObject1 = new Player(this.room20);
-    Room room1 = new Room("a", items.getArmor(), enemy.getOrc());
-    Room room2 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room3 = new Room("a", items.getNull(), enemy.getOrc());
-    RoomWithLock roomWithLock = new RoomWithLock();
-    Room room4 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room5 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room6 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room7 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room8 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room9 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room10 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room11 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room12 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room13 = new Room("This room smells like rotten trash.... OHHHHH an", items.getKey(), enemy.getOrc());
-    Room room14 = new Room("a", items.getKey(), enemy.getNull());
-    Room room15 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room16 = new Room("a", items.getNull(), enemy.getOrc());
-    Room room17 = new Room("a",items.getNull(), enemy.getNull());
-    Room room18 = new Room("a",items.getSword(), enemy.getMutantRat());
-    Room room19 = new Room("a", items.getKey(), enemy.getMutantRat());
-    Room room21 = new Room("Ohhh! Shit! What is this beast??? ... \ncreature: I'M THE TREASURE GUARD.", items.getChest(), enemy.getBoss());
     
     public BuildMap() {
         //room 1
@@ -35,9 +33,7 @@ public class BuildMap {
         room2.setExitSouth(room6);
         //room 3
         room3.setExitEast(room4);
-        room3.setExitNorth(roomWithLock);
-        //RoomWithLock
-        roomWithLock.setExitNorth(room21);
+        room3.setExitNorth(room21);
         //room 4
         room4.setExitSouth(room9);
         room4.setExitEast(room5);
@@ -82,7 +78,6 @@ public class BuildMap {
         room15.setExitWest(room14);
         //room 16
         room16.setExitSouth(room20);
-        room16.setExitEast(room17);
         room16.setExitWest(room15);
         //room 17
         room17.setExitNorth(room12);
@@ -94,31 +89,5 @@ public class BuildMap {
         room19.setExitNorth(room14);
         //room 20
         room20.setExitNorth(room16);
-    }
-
-    public Room[] putRooms() {
-        Room[] arrayRooms;
-        arrayRooms = new Room[20];
-        arrayRooms[0] = room1;
-        arrayRooms[1] = room2;
-        arrayRooms[2] = room3;
-        arrayRooms[3] = room4;
-        arrayRooms[4] = room5;
-        arrayRooms[5] = room6;
-        arrayRooms[6] = room7;
-        arrayRooms[7] = room8;
-        arrayRooms[8] = room9;
-        arrayRooms[9] = room10;
-        arrayRooms[10] = room11;
-        arrayRooms[11] = room12;
-        arrayRooms[12] = room13;
-        arrayRooms[13] = room14;
-        arrayRooms[14] = room15;
-        arrayRooms[15] = room16;
-        arrayRooms[16] = room17;
-        arrayRooms[17] = room18;
-        arrayRooms[18] = room19;
-        arrayRooms[19] = room20;
-        return arrayRooms;
     }
 }

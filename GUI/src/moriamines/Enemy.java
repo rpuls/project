@@ -1,4 +1,6 @@
 package moriamines;
+import org.junit.Test;
+import org.junit.Assert.*;
 
 public class Enemy {
 
@@ -17,26 +19,33 @@ public class Enemy {
         damage = dmg;
     }
     
-    public Enemy getNull(){
+    
+//TYPE    
+    public static Enemy getNull(){
         return (Enemy)null;
     }
-    public Enemy getOrc() {
+    public static Enemy getOrc() {
         return new Enemy("Orc", 10, 1);
     }
 
-    public Enemy getMutantRat() {
+    public static Enemy getMutantRat() {
         return new Enemy("Mutant Rat", 25, 5);
     }
 
-    public Enemy getGhost() {
+    public static Enemy getGhost() {
         return new Enemy("Ghost", 50, 6);
     }
 
-    public Enemy getBoss() {
-        return new Enemy("Boss Deamon", 200, 25);
+    public static Enemy getBoss() {
+        return new Enemy("Boss Deamon", 320, 14);
     }
     
-    //combat
+//COMBAT
+    public String enterAttack(Player p){
+    	p.beAttacked(damage);
+    	return "\nEnemy is attacking you!";
+    }
+    
     public String beAttacked(Player p, int hit){
         if(hitPoints <=0){
             return "The " + name + " is allready dead!";
@@ -51,5 +60,9 @@ public class Enemy {
             return "Enemy's remaning hitpoints: " + hitPoints;
         }
     }  
-
+	@Test
+	public static void test1(){
+		Enemy e = Enemy.getOrc();
+		org.junit.Assert.assertTrue((e.hitPoints == 10));
+	}
 }

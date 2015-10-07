@@ -10,11 +10,30 @@ package moriamines;
  * @author Puls
  */
 public class RoomWithLock extends Room {
-	static Items items = null;
-	static Enemy enemy = null;
 
-    public RoomWithLock() {
-        super("There seems to be a heavy door in the north direction in this room.", items, enemy);
+	private boolean isLocked = true;
+
+    public RoomWithLock(Items i, Enemy e, int coins) {
+        super("\nBut there is a heavy door in the north direction in this room.\n", i, e , coins);
+    }
+    
+    @Override
+    public boolean unlock(){
+    	if(isLocked){
+    		isLocked = false;
+    		return true;
+    	}
+    	return false;
+    }
+    
+    @Override
+    public Room getExitNorth() {
+    	if(isLocked){
+    		System.out.println("The door is locked!");
+    		return null;
+    	}
+        return super.getExitNorth();
+        
     }
     
     

@@ -11,7 +11,7 @@ public class MoriaMines {
         String command, res;
         BuildMap map =new BuildMap();
         Player playerObject1 =  map.playerObject1;
-
+//ENGINE
         while (!gameOver) {
             System.out.print("Command: ");
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -21,15 +21,15 @@ public class MoriaMines {
         }
         System.out.println("Game ended");
     }
-
-    private static String doCommand(Player playerObject1, String command) {
+//COMMANDS (FROM PLAYER)
+    private static String doCommand(Player playerObject1, String command) throws IOException {
         String[] parts = command.split(" ");
         if (parts[0].length() == 0) {
             return "Nothing typed!";
         } else {
 
             if (parts[0].equalsIgnoreCase("back")) {
-                return "Will go back!";
+                return playerObject1.back();
             }
             if (parts[0].equalsIgnoreCase("help")) {
                 return playerObject1.help();
@@ -57,6 +57,40 @@ public class MoriaMines {
                 
                 return playerObject1.pickUp();
             }
+            if (parts[0].equalsIgnoreCase("player")) {
+                
+                return playerObject1.player();
+            }
+            if (parts[0].equalsIgnoreCase("heal")) {
+                
+                return playerObject1.usePotion();
+            }
+            if (parts[0].equalsIgnoreCase("usearmor")) {
+                
+                return playerObject1.useArmor();
+            }
+            if (parts[0].equalsIgnoreCase("useweapon")) {
+                
+                return playerObject1.useWeapon();
+            }
+            if (parts[0].equalsIgnoreCase("usekey")) {
+                
+                return playerObject1.useKey();
+            }
+            if (parts[0].equalsIgnoreCase("restart")) {
+                
+                main(new String[]{""});
+            }
+            if (parts[0].equalsIgnoreCase("quit")) {
+                
+                gameOver = true;
+            }
+            /*
+            if (parts[0].equalsIgnoreCase("use")) {
+                
+                return playerObject1.use();
+            }*/
+            
         }
         return "Not a valid command: " + command;
     }

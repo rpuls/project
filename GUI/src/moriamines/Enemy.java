@@ -54,15 +54,10 @@ public class Enemy {
         if(hitPoints<=0){
             hitPoints = 0;
             p.removeMe();
-            return "The " + name + " just got KILLED!"; //false hvis den er dÃ¸d.
+            return "The " + name + " just got KILLED!"; //false hvis den er død.
         }else{
             p.beAttacked(damage);
             return "Enemy's remaning hitpoints: " + hitPoints;
         }
     }  
-	@Test
-	public static void test1(){
-		Enemy e = Enemy.getOrc();
-		org.junit.Assert.assertTrue((e.hitPoints == 10));
-	}
 }

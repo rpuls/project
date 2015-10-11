@@ -2,74 +2,50 @@ package moriamines;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class PlayerTest {
-	player p = new player();
-
-	@Test
-	public void testGetInventory() {
-		fail("Not yet implemented");
+	Enemy testEnemy = new Enemy("",0,0);
+	Items testItem = new Items("",false,false,false,false,0,0);
+	int hit = 500;
+	Room testRoom = new Room("",testItem,testEnemy,0);
+	Player testPlayer;
+	
+	@Before
+	public void setUp() throws Exception {
+		testPlayer = new Player(testRoom);
 	}
 
-	@Test
-	public void testPickUp() {
-		fail("Not yet implemented");
+	@After
+	public void tearDown() throws Exception {
+		testPlayer = null;
 	}
 
 	@Test
 	public void testUsePotion() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUseArmor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUseWeapon() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUseKey() {
-		fail("Not yet implemented");
+		testPlayer.beAttacked(30);
+		assertTrue(testPlayer.hitPointsCurrent == (testPlayer.hitPointsMax-30));
+		testPlayer.usePotion();
+		assertTrue(testPlayer.hitPointsCurrent == testPlayer.hitPointsMax);
 	}
 
 	@Test
 	public void testBeAttacked() {
-		fail("Not yet implemented");
+		testPlayer.beAttacked(1000);
+		assertTrue(testPlayer.hitPointsCurrent == 0);
+		testPlayer.beAttacked(2000);
+		assertTrue(testPlayer.hitPointsCurrent == 0);
 	}
 
 	@Test
-	public void testAttack() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoNorth() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoSouth() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoEast() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoWest() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testBack() {
-		fail("Not yet implemented");
+	public void useArmor() {
+		final int startMaxHP = testPlayer.hitPointsMax;
+		assertTrue(testPlayer.hitPointsMax == 30);
+		testPlayer.inventory.add(Items.getArmor());
+		testPlayer.useArmor();
+		assertTrue(testPlayer.hitPointsMax == startMaxHP+20);
 	}
 
 }

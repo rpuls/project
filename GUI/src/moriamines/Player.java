@@ -9,7 +9,7 @@ public class Player {
     protected int hitPointsCurrent = 30;
     protected int damage = 2;
     protected int collectedCoins = 25;
-    private ArrayList<Items> inventory;
+    protected ArrayList<Items> inventory;
     public Room currentRoom;
     private Room lastRoom;
     private Enemy e;
@@ -98,8 +98,7 @@ public class Player {
     		return "The door have been unlocked";
 		}
 		return "There are no locked doors in here";
-    	
-    	
+	
     }
     
     /**containsA

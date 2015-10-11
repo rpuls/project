@@ -31,7 +31,7 @@ public class Items {
         return new Items("Bastard Sword!", false, false, false, false, 10, 0);
     }
 
-    public Items getArmor() {
+    public static Items getArmor() {
         return new Items("Body plate", false, false, false, false, 0, 100);
     }
 
